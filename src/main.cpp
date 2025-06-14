@@ -35,11 +35,8 @@ void loop() {
   float humidity = dht.readHumidity();
   int rainValue = analogRead(RAIN_SENSOR_PIN);
   int soilValue = analogRead(SOIL_SENSOR_PIN);
-  float rainPercent = map(rainValue, 3500, 500, 0, 100);
-  rainPercent = constrain(rainPercent, 0, 100);
-
-  float soilPercent = map(soilValue, 3000, 1000, 0, 100);
-  soilPercent = constrain(soilPercent, 0, 100);
+  float soilPercent = map(soilValue, 0, 1023, 0, 100);
+  //soilPercent = constrain(soilPercent, 0, 100);
 
   Serial.println("----- Data -----");
 
@@ -63,7 +60,7 @@ void loop() {
     lcd.print("%");
   }
 
-  Serial.printf(" Rain sensor: %.0f %%\n", rainValue);
+  Serial.printf(" Rain sensor: %.d \n", rainValue);
   Serial.printf(" Soil moisture: %.0f %%\n", soilPercent);
 
   lcd.setCursor(0, 1);
